@@ -1,0 +1,29 @@
+﻿@model List<Application.ViewModels.RegionViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+    <div class="row m-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Region" asp-action="Create" class="btn  btn-outline-info">Crear nueva region</a>
+
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (Application.ViewModels.RegionViewModel item in Model)
+        {
+         <div class="col">
+                <div class="card m-3" style="width: 18rem;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <a asp-controller="Region" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success" style="width: 6rem;">Edit</a>
+                        <a asp-controller="Region" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="width: 6rem;">Delete</a>
+
+                    </div>
+                </div>
+         </div>
+        }
+    </div>
+</div>
