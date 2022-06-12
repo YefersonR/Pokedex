@@ -33,20 +33,42 @@ namespace DBLayer.Models
             model.Entity<Tipos>()
                 .HasMany<Pokemones>(tipos => tipos.TiposPokemones)
                 .WithOne(pokemones => pokemones.NavigationTipoPrimario)
-                .HasForeignKey(product=> product.IdTipos)
+                .HasForeignKey(product=> product.TipoPrimario)
                 .OnDelete(DeleteBehavior.Cascade);
-            
+
             model.Entity<Tipos>()
                 .HasMany<Pokemones>(tipos => tipos.TiposPokemonesSecundarios)
                 .WithOne(pokemones => pokemones.NavigationTipoSecundario)
-                .HasForeignKey(product => product.IdTipos)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(product => product.TipoSecundario)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             model.Entity<Regiones>()
                 .HasMany<Pokemones>(tipos => tipos.RegionPokemones)
                 .WithOne(pokemones => pokemones.NavigationRegion)
-                .HasForeignKey(product => product.IdRegion)
+                .HasForeignKey(product => product.Region)
                 .OnDelete(DeleteBehavior.Cascade);
+            #endregion
+            #region "Configurations"
+            model.Entity<Pokemones>()
+                .Property(pokemones => pokemones.Nombre)
+                .IsRequired();
+
+            model.Entity<Pokemones>()
+                .Property(pokemones => pokemones.Region)
+                .IsRequired();
+
+            model.Entity<Pokemones>()
+                .Property(pokemones => pokemones.TipoPrimario)
+                .IsRequired();
+
+            model.Entity<Regiones>()
+                .Property(regiones => regiones.Nombre)
+                .IsRequired();
+
+            model.Entity<Tipos>()
+                .Property(tipos => tipos.Nombre)
+                .IsRequired();
             #endregion
         }
 

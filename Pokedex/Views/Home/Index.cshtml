@@ -11,10 +11,10 @@
             <form class="offset-3" method="post" asp-controller="Home" asp-action="Index">
                 <input type="text" name="pokemon" class="w-50 border-top-0 border-start-0 border-end-0 text-center" style="outline:0px" placeholder="Buscador de pokemones" />
             </form>
-            <a class="btn btn-primary mt-4 " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-primary mt-4 " data-bs-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
                 Buscar por regiones
             </a>
-            <div class="collapse w-25" >
+            <div class="collapse w-25" id="collapse">
                   <div class="card card-body">        
                     <form class="m-2 " method="post" asp-controller="Home" asp-action="Index">
                         @foreach (var item in Model.Regiones)
@@ -31,7 +31,7 @@
         {
 
             var tipoPrimario = Model.Tipos.First(tip => tip.ID == item.TipoPrimario);
-            var tipoSecundario = Model.Tipos.FirstOrDefault(tip => tip.ID == 1);
+            var tipoSecundario = Model.Tipos.FirstOrDefault(tip => tip.ID == item.TipoSecundario);
             var region = Model.Regiones.First(reg => reg.ID == item.Region);
 
             <div class="col m-3">
@@ -53,7 +53,7 @@
                             <p class="text-center">Tipo Secundario</p>
                             @if (tipoSecundario != null)
                             {
-                                <a class="btn btn-outline-secondary text-center">@tipoSecundario </a>
+                                <a class="btn btn-outline-secondary text-center">@tipoSecundario.Nombre </a>
                             }
                             else
                             {

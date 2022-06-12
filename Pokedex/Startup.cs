@@ -25,7 +25,7 @@ namespace Pokedex
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PokedexContext>(connectionOptions => connectionOptions.UseSqlServer(Configuration.GetConnectionString("Connection")));
+            services.AddDbContext<PokedexContext>(connectionOptions => connectionOptions.UseSqlServer(Configuration.GetConnectionString("PokedexConnection")));
             services.AddControllersWithViews();
         }
 

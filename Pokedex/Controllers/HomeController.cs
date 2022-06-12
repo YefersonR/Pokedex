@@ -48,7 +48,7 @@ namespace Pokedex.Controllers
             
             if (pokemon != null)
             {
-                filterPokemones = pokemones.Where(pokemone => pokemone.Nombre.Contains(pokemon)).ToList();
+                filterPokemones = pokemones.Where(pokemone => pokemone.Nombre.ToLower().Contains(pokemon.ToLower())).ToList();
             }
             else if(region != null)
             {

@@ -15,7 +15,6 @@ namespace Pokedex.Controllers
         private readonly RegionesService _regionesservice;
         private readonly TiposService _tiposservice;
 
-        private readonly ListViewModels listViewModels;
         public PokemonController(PokedexContext context)
         {
             _pokemonesservice = new(context);
@@ -40,14 +39,17 @@ namespace Pokedex.Controllers
             return View("SavePokemon", list );
         }
         [HttpPost]
-        public async Task<IActionResult> Create(SavePokemonViewModel pokemonViewModel)
+        public async Task<IActionResult> Create(ListViewModels pokemonViewModel)
         {
+
+
             if (!ModelState.IsValid)
             {
-                return View("SavePokemon",pokemonViewModel);
+                return View("SavePokemon", pokemonViewModel);
             }
-            await _pokemonesservice.CreatePokemonViewModel(pokemonViewModel);
-            return RedirectToRoute(new { controller = "Pokemon", action ="Index" });
+             
+            await _pokemonesservice.CreatePokemonViewModel(pokemonViewModel.Pokemones);
+            return RedirectToRoute(new { controller = "Pokemon", action = "Index" });
         }
         public async Task<IActionResult> Edit(int id)
         {
@@ -60,14 +62,16 @@ namespace Pokedex.Controllers
             return View("SavePokemon",list);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(SavePokemonViewModel pokemonViewModel)
+        public async Task<IActionResult> Edit(ListViewModels pokemonViewModel)
         {
+         
+
             if (!ModelState.IsValid)
             {
-                return View("SavePokemon",pokemonViewModel);
+                return View("SavePokemon", pokemonViewModel);
             }
-            await _pokemonesservice.UpdatePokemonViewModel(pokemonViewModel);
-            return RedirectToRoute(new { controller = "Region", action = "Index" });
+            await _pokemonesservice.UpdatePokemonViewModel(pokemonViewModel.Pokemones);
+            return RedirectToRoute(new { controller = "Pokemon", action = "Index" });
         }
         public async Task<IActionResult> Delete(int id)
         {

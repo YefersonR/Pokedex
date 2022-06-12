@@ -12,20 +12,21 @@
 
             <div class="card-body">
                 <form method="post" asp-controller="Pokemon" asp-action="@(isCreated ? "Edit" : "Create")">
-                    <input type="hidden" asp-for="Pokemones.ID" />
+
+                    <input type="hidden" asp-for="Pokemones.ID"  name="Pokemones.ID" />
                     <span asp-validation-for="Pokemones.Nombre" class="text-danger"></span>
                     <div class="mb-3">
                         <label asp-for="Pokemones.Nombre" class="form-label">Ingrese el nombre del pokemon</label>
-                        <input asp-for="Pokemones.Nombre" type="text" class="form-control">
+                        <input asp-for="Pokemones.Nombre" name="Pokemones.Nombre" type="text" class="form-control">
                     </div>
                     <span asp-validation-for="Pokemones.ImagenUrl" class="text-danger"></span>
                     <div class="mb-3">
                         <label asp-for="Pokemones.ImagenUrl" class="form-label">Agregue una imagen</label>
-                        <input asp-for="Pokemones.ImagenUrl" type="text" class="form-control">
+                        <input asp-for="Pokemones.ImagenUrl" name="Pokemones.ImagenUrl" type="text" class="form-control">
                     </div>
                     <span asp-validation-for="Pokemones.Region" class="text-danger"></span>
                     <div class="mb-3">
-                        <select asp-for="Pokemones.Region" type="number" class="form-select">
+                        <select asp-for="Pokemones.Region" name="Pokemones.Region" type="text" class="form-select">
                             <option value="" selected>Selecciona la region del pokemon</option>
                             @foreach (var item in Model.Regiones)
                             {
@@ -35,21 +36,21 @@
                     </div>
                     <span asp-validation-for="Pokemones.TipoPrimario" class="text-danger"></span>
                     <div class="mb-3">
-                        <select asp-for="Pokemones.TipoPrimario" type="number" class="form-select">
+                        <select asp-for="Pokemones.TipoPrimario" name="Pokemones.TipoPrimario" type="text" class="form-select">
                             <option value="" selected>Selecciona el tipo principal del pokemon</option>
-                            @foreach (var item in Model.Tipos)
+                            @foreach (var tipo in Model.Tipos)
                             {
-                                <option value="@item.ID">@item.Nombre</option>
+                                <option value="@tipo.ID">@tipo.Nombre</option>
                             }
                         </select>
                     </div>
                     <span asp-validation-for="Pokemones.TipoSecundario" class="text-danger"></span>
                     <div class="mb-3">
-                        <select asp-for="Pokemones.TipoSecundario" type="number" class="form-select">
+                        <select asp-for="Pokemones.TipoSecundario" name="Pokemones.TipoSecundario" type="text" class="form-select">
                             <option value="" selected>Selecciona el tipo secundario del pokemon</option>
-                            @foreach (var item in Model.Tipos)
+                            @foreach (var tipo2 in Model.Tipos)
                             {
-                                <option value="@item.ID">@item.Nombre</option>
+                                <option value="@tipo2.ID">@tipo2.Nombre</option>
 
                             }
                         </select>

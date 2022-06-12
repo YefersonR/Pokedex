@@ -12,7 +12,7 @@ namespace DBLayer.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,7 +25,7 @@ namespace DBLayer.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,52 +38,48 @@ namespace DBLayer.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagenUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Region = table.Column<int>(type: "int", nullable: false),
                     TipoPrimario = table.Column<int>(type: "int", nullable: false),
-                    TipoSecundario = table.Column<int>(type: "int", nullable: false),
-                    IdRegion = table.Column<int>(type: "int", nullable: false),
-                    IdTipos = table.Column<int>(type: "int", nullable: false),
-                    NavigationTipoPrimarioID = table.Column<int>(type: "int", nullable: true)
+                    TipoSecundario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pokemones", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Pokemones_Regiones_IdRegion",
-                        column: x => x.IdRegion,
+                        name: "FK_Pokemones_Regiones_Region",
+                        column: x => x.Region,
                         principalTable: "Regiones",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pokemones_Tipos_IdTipos",
-                        column: x => x.IdTipos,
+                        name: "FK_Pokemones_Tipos_TipoPrimario",
+                        column: x => x.TipoPrimario,
                         principalTable: "Tipos",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pokemones_Tipos_NavigationTipoPrimarioID",
-                        column: x => x.NavigationTipoPrimarioID,
+                        name: "FK_Pokemones_Tipos_TipoSecundario",
+                        column: x => x.TipoSecundario,
                         principalTable: "Tipos",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemones_IdRegion",
+                name: "IX_Pokemones_Region",
                 table: "Pokemones",
-                column: "IdRegion");
+                column: "Region");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemones_IdTipos",
+                name: "IX_Pokemones_TipoPrimario",
                 table: "Pokemones",
-                column: "IdTipos");
+                column: "TipoPrimario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemones_NavigationTipoPrimarioID",
+                name: "IX_Pokemones_TipoSecundario",
                 table: "Pokemones",
-                column: "NavigationTipoPrimarioID");
+                column: "TipoSecundario");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
