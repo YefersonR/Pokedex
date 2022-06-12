@@ -30,47 +30,58 @@ namespace Pokedex.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var regiones = await _regionesservice.GetAllRegionViewModels();
-            var tipos = await _tiposservice.GetAllTiposViewModels();
-            ListViewModels list = new();
-            list.Regiones = regiones;
-            list.Tipos = tipos;
-            list.Pokemones = new SavePokemonViewModel();
-            return View("SavePokemon", list );
+            //var regiones = await _regionesservice.GetAllRegionViewModels();
+            //var tipos = await _tiposservice.GetAllTiposViewModels();
+            //ListViewModels list = new();
+            //list.Regiones = regiones;
+            //list.Tipos = tipos;
+            //list.Pokemones = new SavePokemonViewModel();
+            return View("SavePokemon", new SavePokemonViewModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ListViewModels pokemonViewModel)
+        public async Task<IActionResult> Create(SavePokemonViewModel pokemonViewModel)
         {
-
-
+            //var regiones = await _regionesservice.GetAllRegionViewModels();
+            //var tipos = await _tiposservice.GetAllTiposViewModels();
+            //ListViewModels list = new();
+            //list.Regiones = regiones;
+            //list.Tipos = tipos;
+            //list.Pokemones = pokemonViewModel;
+            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
             if (!ModelState.IsValid)
             {
                 return View("SavePokemon", pokemonViewModel);
             }
              
-            await _pokemonesservice.CreatePokemonViewModel(pokemonViewModel.Pokemones);
+            await _pokemonesservice.CreatePokemonViewModel(pokemonViewModel);
             return RedirectToRoute(new { controller = "Pokemon", action = "Index" });
         }
         public async Task<IActionResult> Edit(int id)
         {
-            var regiones = await _regionesservice.GetAllRegionViewModels();
-            var tipos = await _tiposservice.GetAllTiposViewModels();
-            ListViewModels list = new();
-            list.Regiones = regiones;
-            list.Tipos = tipos;
-            list.Pokemones = await _pokemonesservice.GetByIdPokemonViewModel(id);
-            return View("SavePokemon",list);
+            var pokemon = await _pokemonesservice.GetByIdPokemonViewModel(id);
+            pokemon.lisregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemon.listipos = await _tiposservice.GetAllTiposViewModels();
+            //var regiones = await _regionesservice.GetAllRegionViewModels();
+            //var tipos = await _tiposservice.GetAllTiposViewModels();
+            //ListViewModels list = new();
+            //list.Regiones = regiones;
+            //list.Tipos = tipos;
+            //list.Pokemones = await _pokemonesservice.GetByIdPokemonViewModel(id);
+
+            return View("SavePokemon",pokemon);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(ListViewModels pokemonViewModel)
+        public async Task<IActionResult> Edit(SavePokemonViewModel pokemonViewModel)
         {
          
-
+            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
             if (!ModelState.IsValid)
             {
                 return View("SavePokemon", pokemonViewModel);
             }
-            await _pokemonesservice.UpdatePokemonViewModel(pokemonViewModel.Pokemones);
+            await _pokemonesservice.UpdatePokemonViewModel(pokemonViewModel);
             return RedirectToRoute(new { controller = "Pokemon", action = "Index" });
         }
         public async Task<IActionResult> Delete(int id)

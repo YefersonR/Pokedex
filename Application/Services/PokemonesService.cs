@@ -66,7 +66,7 @@ namespace Application.Services
             pokemones.TipoPrimario = pokemonViewModel.TipoPrimario;
             pokemones.TipoSecundario = pokemonViewModel.TipoSecundario;
 
-            await _pokemonesRepository.AddPokemonAsync(pokemones);
+            await _pokemonesRepository.UpdatePokemonAsync(pokemones);
         }
         public async Task DeletePokemonViewModel(int id)
         {
