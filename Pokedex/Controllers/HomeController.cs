@@ -45,19 +45,14 @@ namespace Pokedex.Controllers
             var pokemones = await _pokemonesService.GetAllPokemonViewModels();
             var filterPokemones = new List<PokemonViewModel>();
 
-            
             if (pokemon != null)
             {
                 filterPokemones = pokemones.Where(pokemone => pokemone.Nombre.ToLower().Contains(pokemon.ToLower())).ToList();
+
             }
             else if(region != null)
             {
                 filterPokemones = pokemones.Where(pok => region.Contains(pok.Region)).ToList();
-
-            }
-            else
-            {
-                filterPokemones = pokemones;
             }
 
             ListViewModels list = new();

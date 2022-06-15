@@ -7,7 +7,6 @@
 <div class="container-fluid">
     <div class="row">
         <div>
-
             <form class="offset-3" method="post" asp-controller="Home" asp-action="Index">
                 <input type="text" name="pokemon" class="w-50 border-top-0 border-start-0 border-end-0 text-center" style="outline:0px" placeholder="Buscador de pokemones" />
             </form>
@@ -27,6 +26,10 @@
                 </div>
             </div>
         </div>
+        @if(Model.ListPokemones.Count == 0)
+        {
+            <h1 class="text-center fs-2">No se encontraron pokemones</h1>
+        }
         @foreach (var item in Model.ListPokemones)
         {
 

@@ -28,25 +28,14 @@ namespace Pokedex.Controllers
             return View(await _pokemonesservice.GetAllPokemonViewModels());
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            //var regiones = await _regionesservice.GetAllRegionViewModels();
-            //var tipos = await _tiposservice.GetAllTiposViewModels();
-            //ListViewModels list = new();
-            //list.Regiones = regiones;
-            //list.Tipos = tipos;
-            //list.Pokemones = new SavePokemonViewModel();
             return View("SavePokemon", new SavePokemonViewModel());
         }
         [HttpPost]
         public async Task<IActionResult> Create(SavePokemonViewModel pokemonViewModel)
         {
-            //var regiones = await _regionesservice.GetAllRegionViewModels();
-            //var tipos = await _tiposservice.GetAllTiposViewModels();
-            //ListViewModels list = new();
-            //list.Regiones = regiones;
-            //list.Tipos = tipos;
-            //list.Pokemones = pokemonViewModel;
+
             pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
             pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
             if (!ModelState.IsValid)
@@ -62,12 +51,7 @@ namespace Pokedex.Controllers
             var pokemon = await _pokemonesservice.GetByIdPokemonViewModel(id);
             pokemon.lisregiones = await _regionesservice.GetAllRegionViewModels();
             pokemon.listipos = await _tiposservice.GetAllTiposViewModels();
-            //var regiones = await _regionesservice.GetAllRegionViewModels();
-            //var tipos = await _tiposservice.GetAllTiposViewModels();
-            //ListViewModels list = new();
-            //list.Regiones = regiones;
-            //list.Tipos = tipos;
-            //list.Pokemones = await _pokemonesservice.GetByIdPokemonViewModel(id);
+        
 
             return View("SavePokemon",pokemon);
         }
