@@ -22,15 +22,17 @@ namespace Pokedex.Controllers
             _tiposservice = new(context);
 
         }
-
         public async Task<IActionResult> Index()
         {
             return View(await _pokemonesservice.GetAllPokemonViewModels());
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View("SavePokemon", new SavePokemonViewModel());
+            SavePokemonViewModel pokemonViewModel = new();
+            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
+            return View("SavePokemon", pokemonViewModel);
         }
         [HttpPost]
         public async Task<IActionResult> Create(SavePokemonViewModel pokemonViewModel)

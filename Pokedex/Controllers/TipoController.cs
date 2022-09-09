@@ -2,9 +2,6 @@
 using Application.ViewModels;
 using DBLayer.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Pokedex.Controllers
@@ -12,7 +9,6 @@ namespace Pokedex.Controllers
     public class TipoController : Controller
     {
         private readonly TiposService _tiposService;
-
         public TipoController(PokedexContext context)
         {
             _tiposService = new(context);

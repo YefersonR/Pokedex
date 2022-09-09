@@ -2,9 +2,6 @@
 using Application.ViewModels;
 using DBLayer.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Pokedex.Controllers
@@ -12,7 +9,6 @@ namespace Pokedex.Controllers
     public class RegionController : Controller
     {
         private readonly RegionesService _regionesService;
-
         public RegionController(PokedexContext context)
         {
             _regionesService = new(context);
@@ -23,7 +19,6 @@ namespace Pokedex.Controllers
         }
         public IActionResult Create()
         {
-
             return View("SaveRegion", new SaveRegionViewModel());
         }
         [HttpPost]

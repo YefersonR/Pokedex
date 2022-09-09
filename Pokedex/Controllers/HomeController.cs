@@ -60,7 +60,6 @@ namespace Pokedex.Controllers
             list.Regiones = regiones;
             list.Tipos = tipos;
 
-
             return View(list);
         }
     }

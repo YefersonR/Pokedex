@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Application.ViewModels
 {
@@ -11,7 +6,6 @@ namespace Application.ViewModels
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Debe añadir el nombre de la region")]
-
         public string Nombre { get; set; }
     }
 }

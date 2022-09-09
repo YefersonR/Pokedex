@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DBLayer.Models
+﻿namespace DBLayer.Models
 {
     public class Pokemones
     {
@@ -18,5 +12,4 @@ namespace DBLayer.Models
         public Tipos NavigationTipoPrimario { get; set; }
         public Tipos NavigationTipoSecundario { get; set; }
     }
-
 }

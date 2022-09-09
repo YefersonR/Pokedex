@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.ViewModels
 {
@@ -21,7 +17,5 @@ namespace Application.ViewModels
         public int TipoSecundario { get; set; }
         public List<RegionViewModel> lisregiones = new();
         public List<TipoViewModel> listipos= new();
-
-
     }
 }

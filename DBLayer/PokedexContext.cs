@@ -1,20 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBLayer.Models
 {
     public class PokedexContext : DbContext
     {
         public PokedexContext(DbContextOptions<PokedexContext> connectionOptions):base(connectionOptions) { }
-
         public DbSet<Pokemones> DbPokemones { get; set; }
         public DbSet<Tipos> DbTipos { get; set; }
         public DbSet<Regiones> DbRegiones { get; set;}
-
         protected override void OnModelCreating(ModelBuilder model)
         {
             #region "Tables"
