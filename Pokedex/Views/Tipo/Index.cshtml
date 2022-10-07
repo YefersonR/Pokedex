@@ -16,32 +16,37 @@
                         <a asp-controller="Tipo" asp-action="Create" class="btn  btn-outline-info ">Crear Nuevo Tipo</a>
                     </div>
 
-
-                    <table class="table table-hover table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="col-7"><h5>Tipos</h5></th>
-                                <th class="text-center"><h5> Mantenimiento</h5> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (Application.ViewModels.TipoViewModel item in Model)
-                            {
+                    @if (Model.Count == 0)
+                    {
+                    <h1 class="text-center fs-2">No se encontraron regiones</h1>
+                    }
+                    else
+                    {
+                        <table class="table table-hover table-bordered text-center">
+                            <thead>
                                 <tr>
-                                    <td scope="row"><h6>Tipo @item.Nombre </h6></td>
-                                    <td class="col text-center">
-                                        <a asp-controller="Tipo" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success ">Edit</a>
-                                        <a asp-controller="Tipo" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
-
-                                    </td>
-
+                                    <th scope="col" class="col-7"><h5>Tipos</h5></th>
+                                    <th class="text-center"><h5> Mantenimiento</h5> </th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (Application.ViewModels.TipoViewModel item in Model)
+                                {
+                                    <tr>
+                                        <td scope="row"><h6>Tipo @item.Nombre </h6></td>
+                                        <td class="col text-center">
+                                            <a asp-controller="Tipo" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success ">Edit</a>
+                                            <a asp-controller="Tipo" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+
+                                        </td>
+
+                                    </tr>
+                                }
                             </tbody>
-                    </table>
+                        </table>
+                    }
                 </div>
             </div>
-
         </div>
-        </div>
+    </div>
 </div>

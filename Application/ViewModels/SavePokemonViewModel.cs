@@ -15,7 +15,7 @@ namespace Application.ViewModels
         [Required(ErrorMessage = "Debe establecer un tipo para el pokemon")]
         public int TipoPrimario { get; set; }
         public int TipoSecundario { get; set; }
-        public List<RegionViewModel> lisregiones = new();
-        public List<TipoViewModel> listipos= new();
+        public List<RegionViewModel> listregiones = new();
+        public List<TipoViewModel> listtipos= new();
     }
 }

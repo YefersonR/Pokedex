@@ -30,16 +30,16 @@ namespace Pokedex.Controllers
         public async Task<IActionResult> Create()
         {
             SavePokemonViewModel pokemonViewModel = new();
-            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
-            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
+            pokemonViewModel.listregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listtipos = await _tiposservice.GetAllTiposViewModels();
             return View("SavePokemon", pokemonViewModel);
         }
         [HttpPost]
         public async Task<IActionResult> Create(SavePokemonViewModel pokemonViewModel)
         {
 
-            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
-            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
+            pokemonViewModel.listregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listtipos = await _tiposservice.GetAllTiposViewModels();
             if (!ModelState.IsValid)
             {
                 return View("SavePokemon", pokemonViewModel);
@@ -51,8 +51,8 @@ namespace Pokedex.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var pokemon = await _pokemonesservice.GetByIdPokemonViewModel(id);
-            pokemon.lisregiones = await _regionesservice.GetAllRegionViewModels();
-            pokemon.listipos = await _tiposservice.GetAllTiposViewModels();
+            pokemon.listregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemon.listtipos = await _tiposservice.GetAllTiposViewModels();
         
 
             return View("SavePokemon",pokemon);
@@ -61,8 +61,8 @@ namespace Pokedex.Controllers
         public async Task<IActionResult> Edit(SavePokemonViewModel pokemonViewModel)
         {
          
-            pokemonViewModel.lisregiones = await _regionesservice.GetAllRegionViewModels();
-            pokemonViewModel.listipos = await _tiposservice.GetAllTiposViewModels();
+            pokemonViewModel.listregiones = await _regionesservice.GetAllRegionViewModels();
+            pokemonViewModel.listtipos = await _tiposservice.GetAllTiposViewModels();
             if (!ModelState.IsValid)
             {
                 return View("SavePokemon", pokemonViewModel);
