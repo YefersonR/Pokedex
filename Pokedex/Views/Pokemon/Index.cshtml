@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3 offset-10">
+        <div class="col-3 offset-10 mb-3">
             <a asp-controller="Pokemon" asp-action="Create" class="btn btn-outline-info">Crear Nuevo Pokemon</a>
           
         </div>
@@ -16,12 +16,12 @@
      }
     else
     {
+            <div class="row">
         @foreach (Application.ViewModels.PokemonViewModel item in Model)
          {
-            <div class="row">
-                <div class="col m-3">
+                <div class="col">
                     <div class="card" style="width: 18rem;">
-                        <img src="@item.ImagenUrl" class="card-img-top ">
+                        <img src="@item.ImagenUrl" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">@item.Nombre</h5>
                             <a asp-controller="Pokemon" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-success">Edit</a>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
          }
+            </div>
     }
 </div>
